@@ -27,6 +27,6 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        Instantiate(enemyObj, PlayerCharacterMovement.Instance.transform.position + (new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f) * spawnRadius)), Quaternion.identity);
+        Instantiate(enemyObj, PlayerCharacterMovement.Instance.transform.position + (new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized * spawnRadius), Quaternion.identity);
     }
 }
