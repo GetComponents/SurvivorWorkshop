@@ -37,18 +37,26 @@ public class EnemyScript : MonoBehaviour
             HurtPlayer();
         }
 
-        if (collision.transform.tag == "PProjectile")
-        {
-            TakeDamage(1);
-        }
+        //if (collision.transform.tag == "PProjectile")
+        //{
+        //    TakeDamage(1);
+        //}
     }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.transform.tag == "PProjectile")
+    //    {
+    //        TakeDamage(1);
+    //    }
+    //}
 
     private void HurtPlayer()
     {
         player.HealthPoints--;
     }
 
-    private void TakeDamage(int amount)
+    public void TakeDamage(int amount)
     {
         HP -= amount;
         if (HP <= 0)

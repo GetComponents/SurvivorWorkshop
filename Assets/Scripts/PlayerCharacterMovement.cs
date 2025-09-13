@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class PlayerCharacterMovement : MonoBehaviour
 {
@@ -53,6 +54,8 @@ public class PlayerCharacterMovement : MonoBehaviour
             {
                 m_healthPoints = value;
             }
+            hpSlider.value = m_healthPoints / MaxHP;
+            Debug.Log("OUch!");
             OnHealthChange?.Invoke();
         }
     }
@@ -61,9 +64,13 @@ public class PlayerCharacterMovement : MonoBehaviour
     public int MaxHP;
     public bool isInvincible;
     [SerializeField]
+    Slider hpSlider;
+    [SerializeField]
     float invincibleTimer;
 
-    public GameObject Projectile;
+    public GameObject Projectile1, Projectile2;
+    [SerializeField]
+    Transform shootPoint;
     public float ProjectileDamage, ProjectileSpeed;
     Vector2 m_moveDir = new Vector2();
     float walkingDistance;
@@ -161,7 +168,8 @@ public class PlayerCharacterMovement : MonoBehaviour
 
     public void Shoot1()
     {
-
+        Projectile tmp = Instantiate(Projectile1, shootPoint.position, Quaternion.identity).GetComponent<Projectile>();
+        tmp.ShootMe(this.transform.forward, ProjectileSpeed, 2);
     }
 
     public void Shoot2()
